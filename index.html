@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title></title>
+    <script src="dino.js"></script>
+  </head>
+  <body>
+    <script charset="utf-8">
+      var input = DINO.Input.getInstance();
+      var input2 = DINO.Input.getInstance();
+
+      setInterval(function () {
+          if(input.Keyboard.isDown(input.Keyboard.KEY_A)){
+            console.log("a");
+          }
+          else if(input.Keyboard.isDown(input.Keyboard.KEY_W)){
+            console.log("w");
+          }
+          else if(input.Keyboard.isDown(input.Keyboard.KEY_S)){
+            console.log("s");
+          }
+          else if(input.Keyboard.isDown(input.Keyboard.KEY_D)){
+            console.log("d");
+          }
+        }, 100);{
+
+      }
+
+    </script>
+  </body>
+</html>
