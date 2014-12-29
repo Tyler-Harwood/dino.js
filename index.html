@@ -7,6 +7,14 @@
     <script charset="utf-8">
       var input = DINO.Input.getInstance();
       var input2 = DINO.Input.getInstance();
+      var smartMap = new DINO.SmartMap(10, 8);
+      var v1 = new DINO.Vector(1,2);
+      var v2 = new DINO.Vector(3,4);
+      smartMap.toggleCollision(v1, v2);
+      smartMap.toggleCollision(v2, v2);
+      smartMap.toggleCollision(v2);
+
+
 
       setInterval(function () {
           if(input.Keyboard.isDown(input.Keyboard.KEY_A)){

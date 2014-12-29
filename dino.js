@@ -4,28 +4,28 @@
 
   var DINO = DINO || {};
 
-  DINO.Vector2d = function(x,y) {
+  DINO.Vector = function(x,y) {
     this.x = x || 0;
     this.y = y || 0;
   };
 
-  DINO.Vector2d.prototype.normalize = function () {
+  DINO.Vector.prototype.normalize = function () {
     var length = this.x * this.x + this.y * this.y;
 
     this.x /= length;
     this.y /= length;
   };
 
-  DINO.Vector2d.prototype.scale = function (scaler) {
+  DINO.Vector.prototype.scale = function (scaler) {
     this.x *= scaler;
     this.y *= scaler;
   };
 
-  DINO.Vector2d.prototype.clone = function() {
-    return new DINO.Vector2d(this.x, this.y);
+  DINO.Vector.prototype.clone = function() {
+    return new DINO.Vector(this.x, this.y);
   };
 
-  DINO.Vector2d.prototype.constructor = DINO.Vector2d;
+  DINO.Vector.prototype.constructor = DINO.Vector;
 
   DINO.Input = (function () {
     var instance;
@@ -135,6 +135,25 @@
 
   })();
 
+  DINO.SmartMap = function (width, height) {
+    this.map = new Array(width);
+    for (var i = 0; i < width; i++) {
+      this.map[i] = new Array(height);
+    }
+  };
+
+  DINO.Vertex = function (vector, data) {
+    this.vector = vector;
+    this.data = data || null;
+  };
+
+  DINO.SmartMap.prototype.toggleCollision = function (v1, v2) {
+    if(this.map[v1.x][v1.y] === null || this.map[v1.x][v1.y] === undefined){
+      this.map[v1.x][v1.y] = new DINO.Vertex(v2);
+    } else {
+      this.map[v1.x][v1.y] = null;
+    }
+  };
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
