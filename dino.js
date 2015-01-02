@@ -106,6 +106,7 @@
         }
       };
 
+      //TODO: Add mouse input
       this.mouse = {
 
       };
@@ -117,17 +118,12 @@
         Keyboard: this.keyboard,
         Mouse: this.mouse
         };
-
     }
-
     return {
-
       getInstance: function () {
-
         if ( !instance ) {
           instance = init();
         }
-
         return instance;
       }
 
@@ -143,7 +139,10 @@
   };
 
   DINO.Vertex = function (vector, data) {
-    this.vector = vector;
+    if(this.vector === null || this.vector === undefined){
+      this.vector = [];
+    }
+    this.vector.push(vector);
     this.data = data || null;
   };
 
