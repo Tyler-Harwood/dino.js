@@ -131,13 +131,6 @@
 
   })();
 
-  DINO.SmartMap = function (width, height) {
-    this.map = new Array(width);
-    for (var i = 0; i < width; i++) {
-      this.map[i] = new Array(height);
-    }
-  };
-
   DINO.Vertex = function (vector, data) {
     if(this.vector === null || this.vector === undefined){
       this.vector = [];
@@ -146,12 +139,28 @@
     this.data = data || null;
   };
 
+  DINO.SmartMap = function (width, height) {
+    this.map = new Array(width);
+    for (var i = 0; i < width; i++) {
+      this.map[i] = new Array(height);
+    }
+  };
+
   DINO.SmartMap.prototype.toggleCollision = function (v1, v2) {
     if(this.map[v1.x][v1.y] === null || this.map[v1.x][v1.y] === undefined){
       this.map[v1.x][v1.y] = new DINO.Vertex(v2);
     } else {
       this.map[v1.x][v1.y] = null;
     }
+  };
+
+  DINO.SmartMap.prototype.checkCollision = function (fromVector, toVector) {
+    if(fromVector.x > toVector.x){
+
+    } else {
+
+    }
+
   };
 
   if (typeof exports !== 'undefined') {
