@@ -12,13 +12,19 @@
   DINO.Vector.prototype.normalize = function () {
     var length = this.x * this.x + this.y * this.y;
 
-    this.x /= length;
-    this.y /= length;
+    return new DINO.Vector(this.x / length, this.y / length);
   };
 
   DINO.Vector.prototype.scale = function (scaler) {
-    this.x *= scaler;
-    this.y *= scaler;
+    return new DINO.Vector(this.x * scaler, this.y * scaler);
+  };
+
+  DINO.Vector.prototype.add = function (v) {
+    return new DINO.Vector(this.x + v.x, this.y + v.y);
+  };
+
+  DINO.Vector.prototype.dot = function (v) {
+     return this.x * v.x + this.y * v.y;
   };
 
   DINO.Vector.prototype.clone = function() {
@@ -155,13 +161,31 @@
   };
 
   DINO.SmartMap.prototype.checkCollision = function (fromVector, toVector) {
-    if(fromVector.x > toVector.x){
+    var direction = toVector.add(fromVector.scale(-1)).normalize();
 
-    } else {
-
-    }
-
+    //Check collision on all x lines
+      //Add vertices above and below collision point
+    //Check collision on all y lines
+      //Add vertices left and right of collision point
   };
+
+  DINO.CheckCollision = function(a, b, c, d) {
+     var e = b.add(a.scale(-1));
+     var f = d.add(c.scale(-1));
+     var p = new DINO.Vector(e.y * -1, e.x);
+
+     var s = f.dot(p);
+
+     if(s !== 0){
+        //Calculate collision
+        h = a.add(c.scale(-1)).dot(p) / s;
+     } else {
+        //Lines are parallel
+        return null;
+     }
+
+        C + F*h;
+ };
 
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
