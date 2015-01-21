@@ -179,12 +179,19 @@
      if(s !== 0){
         //Calculate collision
         h = a.add(c.scale(-1)).dot(p) / s;
+        if(h < 0 || h > 1){
+           //Segments do not touch
+           return null;
+        }
      } else {
-        //Lines are parallel
+        //Segments are parallel
         return null;
      }
 
-        C + F*h;
+     //Return point of collision
+     return c.add(f.scale(h));
+
+     //http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect
  };
 
   if (typeof exports !== 'undefined') {
